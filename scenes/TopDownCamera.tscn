@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://53q80dv8m1pl"]
+
+[ext_resource type="Script" path="res://src/TopDownCamera.gd" id="1_4jdm6"]
+[ext_resource type="Script" path="res://src/Selector.gd" id="2_ru3vo"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 20, 0)
+size = 5.0
+script = ExtResource("1_4jdm6")
+
+[node name="Selector" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_ru3vo")

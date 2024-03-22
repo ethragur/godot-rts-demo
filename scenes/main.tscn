@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://n418cmgr77o3"]
+
+[ext_resource type="PackedScene" uid="uid://53q80dv8m1pl" path="res://scenes/TopDownCamera.tscn" id="1_0c817"]
+[ext_resource type="PackedScene" uid="uid://7rbhnuw8g204" path="res://scenes/composition/selectable.tscn" id="2_i61ij"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b1lk7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wm2gg"]
+sky_material = SubResource("ProceduralSkyMaterial_b1lk7")
+
+[sub_resource type="Environment" id="Environment_addmo"]
+background_mode = 2
+sky = SubResource("Sky_wm2gg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s01nn"]
+size = Vector2(100, 100)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qy6sn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g62xs"]
+albedo_color = Color(1, 0.368627, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ajp7y"]
+material = SubResource("StandardMaterial3D_g62xs")
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_addmo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" parent="." instance=ExtResource("1_0c817")]
+
+[node name="Map" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_s01nn")
+
+[node name="MapObject" type="CharacterBody3D" parent="Map"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+shape = SubResource("CapsuleShape3D_qy6sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+mesh = SubResource("CapsuleMesh_ajp7y")
+skeleton = NodePath("../..")
+
+[node name="Selectable" parent="Map/MapObject" instance=ExtResource("2_i61ij")]
+
+[node name="MapObject2" type="CharacterBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4522, 0, 5.91097)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapObject2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+shape = SubResource("CapsuleShape3D_qy6sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapObject2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+mesh = SubResource("CapsuleMesh_ajp7y")
+skeleton = NodePath("../..")
+
+[node name="Selectable" parent="Map/MapObject2" instance=ExtResource("2_i61ij")]
+
+[node name="MapObject3" type="CharacterBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.70726)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapObject3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+shape = SubResource("CapsuleShape3D_qy6sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapObject3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+mesh = SubResource("CapsuleMesh_ajp7y")
+skeleton = NodePath("../..")
+
+[node name="Selectable" parent="Map/MapObject3" instance=ExtResource("2_i61ij")]
+
+[node name="MapObject4" type="CharacterBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69124, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MapObject4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+shape = SubResource("CapsuleShape3D_qy6sn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/MapObject4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928848, 0)
+mesh = SubResource("CapsuleMesh_ajp7y")
+skeleton = NodePath("../..")
+
+[node name="Selectable" parent="Map/MapObject4" instance=ExtResource("2_i61ij")]
